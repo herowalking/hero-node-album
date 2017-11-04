@@ -24,3 +24,30 @@ exports.getAllAlbums = function (callback) {
         })(0);
     });
 }
+
+exports.getAllImagesByAlbumName = function (albumName, callback) {
+    fs.readdir('./uploads/' + albumName, function (err, files) {
+        if(err) {
+            callback("Not find uploads files", null);
+            return;
+        }
+
+        allImages = [];
+        (function iteratror(i) {
+            if(i == files.length) {
+                callback(null, allImages);
+                return;
+            }
+            fs.stat("./uploads/" + albumName + "/" + files[i], function (err, stats) {
+                if(err) {
+                    callback("Can not find: " + files[i], null);
+                    return;
+                }
+                if(stats.isFile()) {
+                    allImages.push(files[i]);
+                }
+                iteratror(i + 1);
+            });
+        })(0);
+    });
+}

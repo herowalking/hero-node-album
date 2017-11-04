@@ -13,3 +13,17 @@ exports.showIndex = function (req, res, next) {
         });
     });
 }
+
+exports.showPhoto = function (req, res, next) {
+    var albumName = req.params.albumName;
+    file.getAllImagesByAlbumName(albumName, function (err, imagesArray) {
+        if(err) {
+            next();
+            return;
+        }
+        res.render("album", {
+            "albumName": albumName,
+            "images": imagesArray
+        })
+    });
+}

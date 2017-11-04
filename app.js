@@ -9,6 +9,7 @@ app.use(express.static('./public'));
 app.use(express.static('./uploads'));
 
 app.get('/', router.showIndex);
+app.get('/:albumName', router.showPhoto);
 
 app.listen(3000);
 
