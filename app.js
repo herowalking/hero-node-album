@@ -10,6 +10,13 @@ app.use(express.static('./uploads'));
 
 app.get('/', router.showIndex);
 app.get('/:albumName', router.showPhoto);
+app.get('/up', router.showUp);
+app.post('/up', router.doPost);
+
+app.use(function (req, res) {
+    res.render('err');
+});
+
 
 app.listen(3000);
 

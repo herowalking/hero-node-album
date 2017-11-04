@@ -33,7 +33,7 @@ exports.getAllImagesByAlbumName = function (albumName, callback) {
         }
 
         allImages = [];
-        (function iteratror(i) {
+        (function iterator(i) {
             if(i == files.length) {
                 callback(null, allImages);
                 return;
@@ -46,7 +46,7 @@ exports.getAllImagesByAlbumName = function (albumName, callback) {
                 if(stats.isFile()) {
                     allImages.push(files[i]);
                 }
-                iteratror(i + 1);
+                iterator(i + 1);
             });
         })(0);
     });
