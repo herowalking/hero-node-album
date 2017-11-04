@@ -5,8 +5,12 @@ var app = express();
 
 app.set('view engine', 'ejs');
 
-app.use(expres.static('./public'));
-app.use(expres.static('./uploads'));
+app.use(express.static('./public'));
+app.use(express.static('./uploads'));
+
+app.get('/', router.showIndex);
+
+app.listen(3000);
 
 
 
